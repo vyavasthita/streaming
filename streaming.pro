@@ -4,7 +4,7 @@ TEMPLATE = subdirs
 # None as of now.
 
 # Core libaries
-#SUBDIRS += libnLogger libnFileStore libnEventLogger
+SUBDIRS += libnNetmicro
 
 ## Unit tests
 #SUBDIRS += nUnitFileStore nUnitLogger nUnitEventLogger
@@ -12,7 +12,7 @@ TEMPLATE = subdirs
 ## Applications
 #SUBDIRS += netmicro replay eventmicro streamviewer
 
-#include(common.pri)
+include(common.pri)
 
 
 
