@@ -10,7 +10,8 @@ SUBDIRS += libnNetmicro
 #SUBDIRS += nUnitFileStore nUnitLogger nUnitEventLogger
 
 ## Applications
-#SUBDIRS += netmicro replay eventmicro streamviewer
+SUBDIRS += streamingmicro
+
 
 include(common.pri)
 

@@ -7,7 +7,7 @@ TEMPLATE = lib
 win32:CONFIG += static
 else:CONFIG  += shared
 
-QT += core
+QT += network core
 
 TARGET = libnNetmicro
 include( ../../common.pri )

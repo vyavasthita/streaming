@@ -9,20 +9,25 @@
 #define NNETMICRO_H
 
 
+#include <QUdpSocket>
 #include <QtCore>
+#include <QObject>
+
 
 namespace nova {
 
 /**
  * @brief The NNetMicro class
  */
-class NNetMicro
+class NNetMicro : public QObject
 {
+    Q_OBJECT
+
 public:
     /**
      * @brief NNetMicro constructor
      */
-    NNetMicro();
+    explicit NNetMicro(QObject *parent = nullptr);
 
     /**
      * @brief ~NNetMicro destructor
@@ -34,6 +39,18 @@ public:
      * @return true for success otherwise false
      */
     void my_call_back();
+
+signals:
+
+public slots:
+    void connected();
+    void disconnected();
+    void readyRead();
+
+private:
+    QUdpSocket *socket;
+    int messageCount;
+signals:
 };
 
 ////////////////////////////////////////////////////////////////////////////////
