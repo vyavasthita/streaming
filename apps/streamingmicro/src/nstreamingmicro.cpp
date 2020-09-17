@@ -1,12 +1,12 @@
 #include "nstreamingmicro.h"
-#include "nnetmicro.h"
+//#include "nnetmicro.h"
 
 
 using namespace nova;
 
 NStreamingMicro::NStreamingMicro()
 {
-    NNetMicro ob;
+    //NNetMicro ob;
 }
 
 NStreamingMicro::~NStreamingMicro()

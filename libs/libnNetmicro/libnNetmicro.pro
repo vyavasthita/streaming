@@ -9,8 +9,9 @@ else:CONFIG  += shared
 
 QT += network core
 
-TARGET = libnNetmicro
+TARGET = nNetmicro
 include( ../../common.pri )
 
 HEADERS += $$files(include/*.h)
 SOURCES += $$files(src/*.cpp)
+

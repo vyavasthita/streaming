@@ -2,10 +2,11 @@ CONFIG += debug_and_release
 CONFIG(debug, debug|release):BUILD = debug
 else:BUILD = release
 
+unix:SYS = linux
+
 # Source directories
 APPS_SRC = $${PWD}/apps
 LIBS_SRC = $${PWD}/libs
-
 
 streaming.depends = libnNetmicro
 
@@ -26,8 +27,23 @@ equals(TEMPLATE, subdirs) {
     return()
 }
 
-QMAKE_LFLAGS_RPATH=
-QMAKE_LFLAGS += "-Wl,-rpath,\'\$$ORIGIN\'" -Wl,-rpath,$$APPS_DIR
+# Convert Windows library names to debug versions (append "d")
+#win32 {
+#    defineReplace(makeWindowsDebugLibs) {
+#        return($$replace(1, (-l\w+), \1d))
+#    }
+#} else:unix {
+#    # suppress the default RPATH if you wish
+#    QMAKE_LFLAGS_RPATH=
+#    QMAKE_LFLAGS += "-Wl,-rpath,\'\$$ORIGIN\'" -Wl,-rpath,$$APPS_DIR
+#}
+
+defineTest(setDefineForProjects) {
+    contains(2, $$TARGET) {
+        DEFINES *= $$1
+    }
+    export(DEFINES)
+}
 
 # C++17 support
 CONFIG += c++17
@@ -35,7 +51,12 @@ CONFIG += c++17
 # Default application include path
 INCLUDEPATH *= include
 
-# Output directories (set OUT_BASE env var to override)
+DESTDIR = /home/supernova/Documents/source_code/streaming/builds
+
+#linux:createdir.commands = $$shell_path(OUT_BASE) & $(MKDIR) $$shell_path(OUT_BASE)
+
+
+## Output directories (set OUT_BASE env var to override)
 #isEmpty(OUT_BASE):OUT_BASE=$${top_builddir}
 
 #APPS_DIR       = $${OUT_BASE}/builds/$${SYS}/$${BUILD}
@@ -46,6 +67,7 @@ INCLUDEPATH *= include
 #OBJECTS_DIR    = $${BUILD_DIR}/obj
 #RCC_DIR        = $${BUILD_DIR}/rcc
 
+
 ## Apps and libraries go into APPS_DIR for easier deployment
 #LIBS = -L$$APPS_DIR $$LIBS
 #win32:LIBS *= -L$$LIBS_DIR
@@ -54,7 +76,5 @@ INCLUDEPATH *= include
 #} else {
 #    DESTDIR = $$APPS_DIR
 #}
-# DESTDIR = $$APPS_DIR
-
-
+#DESTDIR = $$APPS_DIR
 

@@ -6,15 +6,14 @@ QT += core
 
 CONFIG += c++11 console
 
-TARGET	= streamingmicro
+TARGET = streamingmicro
 
 HEADERS += $$files(include/*.h)
 SOURCES += $$files(src/*.cpp)
 
-include( ../../common.pri )
-
-
-unix:!macx: LIBS += -L$$OUT_PWD/../../libs/libnNetmicro/ -llibnNetmicro
+unix:!macx: LIBS += -L/home/supernova/Documents/source_code/streaming/builds/libnNetmicro.so
 
 INCLUDEPATH += $$PWD/../../libs/libnNetmicro/include
 DEPENDPATH += $$PWD/../../libs/libnNetmicro/include
+
+include( ../../common.pri )

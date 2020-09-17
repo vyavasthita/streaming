@@ -9,7 +9,7 @@
 #define NNETMICRO_H
 
 
-#include <QUdpSocket>
+#include <QtNetwork/QUdpSocket>
 #include <QtCore>
 #include <QObject>
 
